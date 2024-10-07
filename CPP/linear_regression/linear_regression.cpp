@@ -1,5 +1,7 @@
-#include "LinearRegression.h"
+#include "linear_regression.h"
 #include <numeric> // For std::accumulate
+#include <pybind11/pybind11.h>
+#include <pybind11/stl.h>  // For std::vector bindings with pybind11
 
 // Constructor
 LinearRegression::LinearRegression() : slope_(0), intercept_(0) {}
@@ -46,7 +48,7 @@ double LinearRegression::covariance(const std::vector<double>& X, const std::vec
   double y_mean = mean(y);
   double cov = 0.0;
 
-  for (size_t i = 0; i < X.size(); ++i) {
+  for (std::size_t i = 0; i < X.size(); ++i) {
     cov += (X[i] - X_mean) * (y[i] - y_mean);
   }
 
@@ -63,4 +65,16 @@ double LinearRegression::variance(const std::vector<double>& X) const {
   }
 
   return var / X.size();
+}
+
+// PYBIND11 bindings to expose C++ class and methods to Python
+namespace py = pybind11;
+
+PYBIND11_MODULE(linear_regression, m) {
+    py::class_<LinearRegression>(m, "LinearRegression")
+        .def(py::init<>())  // Constructor binding
+        .def("fit", &LinearRegression::fit)  // Binding fit method
+        .def("predict", &LinearRegression::predict)  // Binding predict method
+        .def("getSlope", &LinearRegression::getSlope)  // Binding getSlope method
+        .def("getIntercept", &LinearRegression::getIntercept);  // Binding getIntercept method
 }
