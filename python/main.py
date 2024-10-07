@@ -3,7 +3,7 @@ from sklearn.datasets import fetch_openml
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 
-from models.neural_network import NeuralNetwork
+from python.models.neural_network import NeuralNetwork
 
 # Step 1: Load and preprocess the Iris dataset
 iris = fetch_openml(name='iris', version=1)
