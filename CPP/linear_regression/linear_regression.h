@@ -1,3 +1,4 @@
+// Header file linear_regression.h
 #ifndef LINEAR_REGRESSION_H
 #define LINEAR_REGRESSION_H
 
@@ -5,8 +6,8 @@
 
 class LinearRegression {
 public:
-    // Constructor
-    LinearRegression();
+    // Constructor with learning rate and iterations
+    LinearRegression(double learning_rate = 0.01, int iterations = 1000);
 
     // Fit the model to the data
     void fit(const std::vector<double>& X, const std::vector<double>& y);
@@ -23,14 +24,10 @@ private:
     double slope_;
     double intercept_;
 
-    // Helper function to calculate the mean
-    double mean(const std::vector<double>& vec) const;
+    double learning_rate_;
+    int iterations_;
 
-    // Helper function to calculate covariance
-    double covariance(const std::vector<double>& X, const std::vector<double>& y) const;
-
-    // Helper function to calculate variance
-    double variance(const std::vector<double>& X) const;
+    double meanSquaredError(const std::vector<double>& X, const std::vector<double>& y) const;
 };
 
 #endif // LINEAR_REGRESSION_H

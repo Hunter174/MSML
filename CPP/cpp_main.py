@@ -4,8 +4,8 @@ sys.path.append('../cmake-build-debug')
 import linear_regression
 
 def main():
-    # Create an instance of the LinearRegression class
-    model = linear_regression.LinearRegression()
+    # Create an instance of the LinearRegression class with learning rate and iterations
+    model = linear_regression.LinearRegression(learning_rate=0.01, iterations=100)
 
     # Data for fitting
     X = [1.0, 2.0, 3.0, 4.0, 5.0]
