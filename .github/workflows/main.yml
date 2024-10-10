@@ -1,0 +1,24 @@
+name: Add Hello World Text File
+
+on:
+  workflow_dispatch:  # Allows you to manually trigger this workflow
+
+jobs:
+  add-hello-txt:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Add hello.txt
+      run: |
+        echo "Hello World" > hello.txt
+
+    - name: Commit and push hello.txt
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add hello.txt
+        git commit -m "Add hello.txt with Hello World content"
+        git push origin dev  # Push to the dev branch
