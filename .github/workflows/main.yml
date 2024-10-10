@@ -13,7 +13,7 @@ jobs:
 
     - name: Add hello.txt
       run: |
-        echo "Goodbye World" > hello.txt" > hello.txt
+        echo "Goodbye World" > hello.txt
 
     - name: Commit and push hello.txt
       run: |
